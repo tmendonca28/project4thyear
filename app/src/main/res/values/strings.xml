@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FirebaseAuth</string>
+    <string name="title_activity_health_customization">HealthCustomizationActivity</string>
+</resources>
