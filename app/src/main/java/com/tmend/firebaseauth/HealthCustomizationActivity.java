@@ -36,7 +36,7 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
     private DatabaseReference databaseReference;
 
     private EditText editTextGender, editTextAge, editTextWeight, editTextAllergicFood, editTextActivityLevel;
-    private Button buttonSave;
+    private Button buttonSave,buttonProceed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         editTextAllergicFood = (EditText) findViewById(R.id.etallergy);
         editTextActivityLevel = (EditText) findViewById(R.id.etactivitylevel);
         buttonSave = (Button) findViewById(R.id.btnSave);
+        buttonProceed = (Button) findViewById(R.id.btnProceed);
 
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -71,6 +72,7 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         //adding listener to buttons
         buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
+        buttonProceed.setOnClickListener(this);
 
 
 
@@ -103,6 +105,14 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         }
         if (view == buttonSave) {
             saveUserInformation();
+            //open main screen
+            finish();
+            startActivity(new Intent(this, MainScreen.class));
+        }
+        if (view == buttonProceed) {
+            //open main screen
+            finish();
+            startActivity(new Intent(this, MainScreen.class));
         }
     }
 }

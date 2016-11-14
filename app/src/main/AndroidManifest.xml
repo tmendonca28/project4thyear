@@ -18,7 +18,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".HealthCustomizationActivity"></activity>
+        <activity android:name=".HealthCustomizationActivity" />
+        <activity
+            android:name=".MainScreen"
+            android:label="@string/title_activity_main_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodAdviser"
+            android:label="@string/title_activity_food_adviser"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CalorieCalculator"
+            android:label="@string/title_activity_calorie_calculator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

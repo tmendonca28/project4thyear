@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FirebaseAuth</string>
     <string name="title_activity_health_customization">HealthCustomizationActivity</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="title_activity_food_adviser">FoodAdviser</string>
+    <string name="title_activity_calorie_calculator">CalorieCalculator</string>
 </resources>
