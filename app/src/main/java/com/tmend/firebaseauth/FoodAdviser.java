@@ -4,8 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -13,7 +20,10 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-public class FoodAdviser extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class FoodAdviser extends AppCompatActivity implements View.OnClickListener{
+private Button buttonProtein, buttonGrain, buttonFruit, buttonVegetables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +31,17 @@ public class FoodAdviser extends AppCompatActivity {
         setContentView(R.layout.activity_food_adviser);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        buttonProtein = (Button) findViewById(R.id.buttonProtein);
+        buttonGrain = (Button) findViewById(R.id.buttonHealthyGrains);
+        buttonVegetables = (Button) findViewById(R.id.buttonVegetables);
+        buttonFruit = (Button) findViewById(R.id.buttonFruits);
+        //adding listeners to button
+        buttonProtein.setOnClickListener(this);
+        buttonGrain.setOnClickListener(this);
+        buttonVegetables.setOnClickListener(this);
+        buttonFruit.setOnClickListener(this);
+
 
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
@@ -66,8 +87,26 @@ public class FoodAdviser extends AppCompatActivity {
                     }
                 })
                 .build();
-
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == buttonProtein){
+            finish();
+            startActivity(new Intent(this, FoodAdviserProtein.class));
+        }
+        if(view == buttonGrain){
+            finish();
+            startActivity(new Intent(this, FoodAdviserGrain.class));
+        }
+        if(view == buttonVegetables){
+            finish();
+            startActivity(new Intent(this, FoodAdviserVegetables.class));
+        }
+        if(view == buttonFruit){
+            finish();
+            startActivity(new Intent(this, FoodsMainHolder.class));
+        }
+    }
 }
 

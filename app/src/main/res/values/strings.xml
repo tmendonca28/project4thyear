@@ -4,4 +4,14 @@
     <string name="title_activity_main_screen">MainScreen</string>
     <string name="title_activity_food_adviser">FoodAdviser</string>
     <string name="title_activity_calorie_calculator">CalorieCalculator</string>
+    <string name="title_activity_food_adviser_protein">FoodAdviserProtein</string>
+    <string name="title_activity_food_adviser_grain">FoodAdviserGrain</string>
+    <string name="title_activity_food_adviser_fruit">FoodAdviserFruit</string>
+    <string name="title_activity_food_adviser_vegetables">FoodAdviserVegetables</string>
+    <string name="title_activity_new_fruit">NewFruit</string>
+    <string name="title_activity_fruit_spinner">FruitSpinner</string>
+    <string name="title_activity_foods_main_holder">FoodsMainHolder</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -51,11 +51,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter Weight in Kg"/>
         <EditText
-            android:id="@+id/etallergy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Allergic food"/>
-        <EditText
             android:id="@+id/etactivitylevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

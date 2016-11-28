@@ -35,7 +35,7 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
 
     private DatabaseReference databaseReference;
 
-    private EditText editTextGender, editTextAge, editTextWeight, editTextAllergicFood, editTextActivityLevel;
+    private EditText editTextGender, editTextAge, editTextWeight, editTextActivityLevel;
     private Button buttonSave,buttonProceed;
 
     @Override
@@ -56,7 +56,6 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         editTextGender = (EditText) findViewById(R.id.etgender);
         editTextAge = (EditText) findViewById(R.id.etage);
         editTextWeight = (EditText) findViewById(R.id.etweight);
-        editTextAllergicFood = (EditText) findViewById(R.id.etallergy);
         editTextActivityLevel = (EditText) findViewById(R.id.etactivitylevel);
         buttonSave = (Button) findViewById(R.id.btnSave);
         buttonProceed = (Button) findViewById(R.id.btnProceed);
@@ -82,14 +81,13 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         String gender = editTextGender.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
         String weight = editTextWeight.getText().toString().trim();
-        String allergicfood = editTextAllergicFood.getText().toString().trim();
         String activitylevel = editTextActivityLevel.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(gender,age,weight,allergicfood,activitylevel);
+        UserInformation userInformation = new UserInformation(gender,age,weight,activitylevel);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        databaseReference.child("users").child(user.getUid()).setValue(userInformation);
 
         Toast.makeText(this,"Information Saved...", Toast.LENGTH_LONG).show();
     }

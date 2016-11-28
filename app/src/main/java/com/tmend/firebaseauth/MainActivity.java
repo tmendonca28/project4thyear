@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(firebaseAuth.getCurrentUser() !=null){
             //profile activity here
             finish();
-            startActivity(new Intent(getApplicationContext(),HealthCustomizationActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainScreen.class));
         }
 
         progressDialog = new ProgressDialog(this);
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(TextUtils.isEmpty(password)){
             //password is empty
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
             //stop function from executing further
             return;
         }

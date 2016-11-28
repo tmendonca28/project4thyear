@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tmend.firebaseauth">
+
+    <uses-sdk tools:overrideLibrary="com.firebase.ui" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -30,6 +33,34 @@
         <activity
             android:name=".CalorieCalculator"
             android:label="@string/title_activity_calorie_calculator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodAdviserProtein"
+            android:label="@string/title_activity_food_adviser_protein"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodAdviserGrain"
+            android:label="@string/title_activity_food_adviser_grain"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodAdviserFruit"
+            android:label="@string/title_activity_food_adviser_fruit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodAdviserVegetables"
+            android:label="@string/title_activity_food_adviser_vegetables"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NewFruit"
+            android:label="@string/title_activity_new_fruit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FruitSpinner"
+            android:label="@string/title_activity_fruit_spinner"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodsMainHolder"
+            android:label="@string/title_activity_foods_main_holder"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
