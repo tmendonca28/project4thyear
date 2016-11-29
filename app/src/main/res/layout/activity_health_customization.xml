@@ -10,7 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.tmend.firebaseauth.HealthCustomizationActivity">
+    tools:context="com.tmend.firebaseauth.HealthCustomizationActivity"
+    tools:showIn="@layout/activity_health_customization">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -34,26 +35,32 @@
             android:id="@+id/buttonLogout"
             android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:id="@+id/etgender"
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/spinner_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Male or Female"/>
-        <EditText
+            android:hint="Gender"
+            app:met_floatingLabel="normal" />
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/etage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Age"/>
-        <EditText
+            android:hint="Age in Years"
+            app:met_floatingLabel="normal" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/etweight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Weight in Kg"/>
-        <EditText
-            android:id="@+id/etactivitylevel"
+            android:hint="Weight in Kg"
+            app:met_floatingLabel="normal" />
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/spinner_activitylevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Activity Level (Sedentary, Moderately Active, Active)"/>
+            android:hint="Activity Level"
+            app:met_floatingLabel="normal" />
+
 
         <Button
             android:id="@+id/btnSave"
@@ -67,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity = "center_horizontal"
             android:text = "Proceed to Main Screen"/>
+
 
     </LinearLayout>
 </RelativeLayout>

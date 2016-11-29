@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,8 +25,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 public class HealthCustomizationActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    private MaterialBetterSpinner spinner_gender, spinner_activity_level;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -53,12 +59,24 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        editTextGender = (EditText) findViewById(R.id.etgender);
+        spinner_gender = (MaterialBetterSpinner) findViewById(R.id.spinner_gender);
+        spinner_activity_level = (MaterialBetterSpinner) findViewById(R.id.spinner_activitylevel);
+//        editTextGender = (EditText) findViewById(R.id.etgender);
         editTextAge = (EditText) findViewById(R.id.etage);
         editTextWeight = (EditText) findViewById(R.id.etweight);
-        editTextActivityLevel = (EditText) findViewById(R.id.etactivitylevel);
+//        editTextActivityLevel = (EditText) findViewById(R.id.etactivitylevel);
         buttonSave = (Button) findViewById(R.id.btnSave);
         buttonProceed = (Button) findViewById(R.id.btnProceed);
+        String[] GENDER = getResources().getStringArray(R.array.gender_types);
+        String[] ACTIVITY_TYPES = getResources().getStringArray(R.array.activity_level_types);
+
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,GENDER);
+        ArrayAdapter<String> activity_levelAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ACTIVITY_TYPES);
+
+        spinner_gender.setAdapter(genderAdapter);
+        spinner_activity_level.setAdapter(activity_levelAdapter);
+        editTextAge.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editTextWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -78,10 +96,10 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
     }
 
     private void saveUserInformation(){
-        String gender = editTextGender.getText().toString().trim();
+        String gender = spinner_gender.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
         String weight = editTextWeight.getText().toString().trim();
-        String activitylevel = editTextActivityLevel.getText().toString().trim();
+        String activitylevel = spinner_activity_level.getText().toString().trim();
 
         UserInformation userInformation = new UserInformation(gender,age,weight,activitylevel);
 
