@@ -60,6 +60,29 @@
             android:layout_height="wrap_content"
             android:hint="Activity Level"
             app:met_floatingLabel="normal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/spinner_height_feet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Height(Feet)"
+                app:met_floatingLabel="normal"
+                android:layout_weight="0.5"/>
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:paddingLeft="20dp"
+                android:id="@+id/spinner_height_inches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Inches"
+                app:met_floatingLabel="normal"
+                android:layout_weight="0.5"/>
+
+
+        </LinearLayout>
 
 
         <Button

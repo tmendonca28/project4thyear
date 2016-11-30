@@ -11,15 +11,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.snapshot.DoubleNode;
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.android.gms.common.data.DataBufferObserverSet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +44,11 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
     private FirebaseListAdapter proteinAlternativeAdapter;
 
 
-    private final List<Foods> protein_object = new ArrayList<Foods>();
+    private final List<Foods> protein_objects = new ArrayList<Foods>();
+    // The two lists
+    private final ArrayList<Foods> protein_obj_higher_gly = new ArrayList<Foods>();
+    private final ArrayList<Foods> protein_obj_lower_gly = new ArrayList<Foods>();
+
     private ArrayAdapter<Foods> proteinsAdapter;
     //Initializing
     private TextView proteinLocalName, proteinCalories, proteinGlycaemicIndex, proteinBenefits;
@@ -81,16 +82,18 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         databaseReference.child("foods").orderByChild("food_type").equalTo("protein").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final List<String> protein_name = new ArrayList<String>();
+                final List<String> protein_names = new ArrayList<String>();
 
 
                 for(DataSnapshot proteinSnapshot: dataSnapshot.getChildren()){
                     Foods proteinSnap = proteinSnapshot.getValue(Foods.class);
-                    protein_name.add(proteinSnap.getFood_name());
-                    protein_object.add(proteinSnap);
+                    protein_names.add(proteinSnap.getFood_name());
+                    protein_objects.add(proteinSnap);
+
                 }
+                Log.e("TAG", "protein_objects size1: " + protein_objects.size());
                 proteinSpinner.setOnItemSelectedListener(ProteinTabFragment.this);
-                ArrayAdapter<String> proteinNamesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,protein_name);
+                ArrayAdapter<String> proteinNamesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,protein_names);
                 proteinNamesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 proteinSpinner.setAdapter(proteinNamesAdapter);
             }
@@ -110,8 +113,9 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_protein_tab, container, false);
-        //ArrayAdapter<Foods> proteinsAdapter = new ArrayAdapter<Foods>(getActivity(),R.layout.fragment_protein_tab,protein_object);
-
+        //ArrayAdapter<Foods> proteinsAdapter = new ArrayAdapter<Foods>(getActivity(),R.layout.fragment_protein_tab,protein_objects);
+        Log.e("TAG", "Hello onCreate View");
+        Log.e("TAG", "protein_objects size2: " + protein_objects.size());
         proteinLocalName = (TextView) rootView.findViewById(R.id.textViewProteinLocalName);
         proteinCalories = (TextView) rootView.findViewById(R.id.textViewProteinCalories);
         proteinGlycaemicIndex = (TextView) rootView.findViewById(R.id.textViewProteinGlycaemicIndex);
@@ -122,34 +126,41 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         proteinAlternativesListView = (ListView) rootView.findViewById(R.id.protein_alternatives);
 
 
-
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.radiogroup_proteins);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // checkedId is the RadioButton selected
+                Log.e("TAG", "protein_objects size3: " + protein_objects.size());
+                Log.e("TAG", "Current Glycaemic index:" + proteinGlycaemicIndex.getText());
+                // Loop through all the proteins to determine which goes in which list
+                for (Foods protein: protein_objects ) {
+                    // First, let's log the glycaemic index to see if it gets it
+                    Log.e("TAG", "Glycaemic index:" + protein.getGlycaemic_index().toString());
+                    // Do the if statements here to decide what object goes into which list
+                    if(protein.getGlycaemic_index() > Integer.parseInt(proteinGlycaemicIndex.getText().toString())) {
+                        protein_obj_higher_gly.add(protein);
+                    } else {
+                        protein_obj_lower_gly.add(protein);
+                    }
 
+                }
+
+                // checkedId is the RadioButton selected
                 switch(checkedId) {
                     case R.id.rb_protein_higher_sugar_content:
-                        proteinAlternativeAdapter = new FirebaseListAdapter <FoodsPOJO>(getActivity(),FoodsPOJO.class,R.layout.protein_alternatives_card,dref.child("proteins").orderByChild("glycaemic_index").startAt(gi)) {
-                            @Override
-                            protected void populateView(View v, FoodsPOJO model, int position) {
-                                TextView protein_alternatives_food_name = (TextView) v.findViewById(R.id.protein_alternatives_card_food_name);
-                                TextView protein_alternatives_benefits = (TextView) v.findViewById(R.id.protein_alternatives_card_benefits);
 
-                                protein_alternatives_food_name.setText(model.getFood_name());
-                                protein_alternatives_benefits.setText(model.getBenefits());
-                            }
-                        };
-                        //Assigning list to the adapter
-                        proteinAlternativesListView.setAdapter(proteinAlternativeAdapter);
+                        // Using the default android array adapter
+                        FoodsArrayAdapter proteinAltHigherAdapter = new FoodsArrayAdapter(getActivity(), protein_obj_higher_gly);
+                        proteinAlternativesListView.setAdapter(proteinAltHigherAdapter);
+
                         Toast.makeText(getActivity(),proteinGlycaemicIndex.getText().toString(), Toast.LENGTH_SHORT).show();
 
                         // what happens when you choose higher
                         break;
                     case R.id.rb_protein_lower_sugar_content:
                         Toast.makeText(getActivity(),"Selected Lower", Toast.LENGTH_SHORT).show();
-
+                        FoodsArrayAdapter proteinAltLowerAdapter = new FoodsArrayAdapter(getActivity(), protein_obj_lower_gly);
+                        proteinAlternativesListView.setAdapter(proteinAltLowerAdapter);
                         // what happens when you choose lower
                         break;
                 }
@@ -185,12 +196,14 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        proteinLocalName.setText("" + protein_object.get(i).getLocal_name());
-        proteinCalories.setText("" + protein_object.get(i).getCalories());
-        proteinGlycaemicIndex.setText("" + protein_object.get(i).getGlycaemic_index());
-        proteinBenefits.setText("" + protein_object.get(i).getBenefits());
+        proteinLocalName.setText("" + protein_objects.get(i).getLocal_name());
+        proteinCalories.setText("" + protein_objects.get(i).getCalories());
+        proteinGlycaemicIndex.setText("" + protein_objects.get(i).getGlycaemic_index());
+        proteinBenefits.setText("" + protein_objects.get(i).getBenefits());
 
-// proteinBenefits.setText(protein_object.get(i+1).getBenefits());
+
+
+// proteinBenefits.setText(protein_objects.get(i+1).getBenefits());
     }
 
     @Override

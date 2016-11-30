@@ -15,28 +15,6 @@
     android:focusableInTouchMode="true">
 
 
-        <!--<include-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/toolbar"-->
-        <!--layout="@layout/toolbar">-->
-        <!--</include>-->
-        <!--<com.miguelcatalan.materialsearchview.MaterialSearchView-->
-        <!--android:id="@+id/search_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:elevation="5dp"-->
-        <!--android:layout_height="wrap_content" />-->
-
-        <!--<include-->
-        <!--layout="@layout/fragment_search_results"-->
-        <!--android:elevation="4dp"-->
-        <!--android:id="@+id/searchInclude"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_below="@id/toolbar"-->
-        <!--android:visibility="invisible"-->
-        <!--/>-->
-
-
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             style="@style/TabLayoutStyle"

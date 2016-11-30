@@ -61,6 +61,14 @@
         <activity
             android:name=".FoodsMainHolder"
             android:label="@string/title_activity_foods_main_holder"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BMRCalculator"
+            android:label="@string/title_activity_bmrcalculator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodCalorieCalculator"
+            android:label="@string/title_activity_food_calorie_calculator"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

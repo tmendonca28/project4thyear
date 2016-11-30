@@ -38,7 +38,7 @@ public class MainScreen extends AppCompatActivity {
     //firebase auth object
     private FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    TextView usergender, userweight, userage, useractivitylevel;
+    TextView usergender, userweight, userage, useractivitylevel, userHeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class MainScreen extends AppCompatActivity {
         usergender = (TextView) findViewById(R.id.textViewDisplayGender);
         userweight = (TextView) findViewById(R.id.textViewDisplayWeight);
         useractivitylevel = (TextView) findViewById(R.id.textViewDisplayActivityLevel);
+        userHeight = (TextView) findViewById(R.id.textViewDisplayHeight);
 
 
 
@@ -84,6 +85,7 @@ public class MainScreen extends AppCompatActivity {
                 userage.setText(userinfo.getAge());
                 userweight.setText(userinfo.getWeight());
                 useractivitylevel.setText(userinfo.getActivitylevel());
+                userHeight.setText(userinfo.getHeight_feet() + " Feet " + userinfo.getHeight_inches() + " Inches");
             }
 
             @Override

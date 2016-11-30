@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_extra_module"
+    android:id="@+id/content_bmrcalculator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,8 +10,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.tmend.firebaseauth.MainScreen"
-    tools:showIn="@layout/activity_main_screen">
+    tools:context="com.tmend.firebaseauth.BMRCalculator"
+    tools:showIn="@layout/activity_bmrcalculator">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +41,7 @@
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewDisplayGender"
+                android:id="@+id/textViewGender"
                 android:layout_weight="0.25" />
         </LinearLayout>
 
@@ -60,7 +61,7 @@
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewDisplayAge"
+                android:id="@+id/textViewAge"
                 android:layout_weight="0.25" />
         </LinearLayout>
 
@@ -80,29 +81,29 @@
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewDisplayWeight"
+                android:id="@+id/textViewWeight"
                 android:layout_weight="0.25" />
         </LinearLayout>
 
         <LinearLayout
-        android:id="@+id/LayoutDisplayActivityLevel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-        <TextView
-            android:text="Activity Level:"
+            android:id="@+id/LayoutDisplayActivityLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewDisplayActivityLevelLabel"
-            android:layout_weight="0.75" />
-        <TextView
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewDisplayActivityLevel"
-            android:layout_weight="0.25" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:text="Activity Level:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewDisplayActivityLevelLabel"
+                android:layout_weight="0.75" />
+            <TextView
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewActivityLevelBMR"
+                android:layout_weight="0.25" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/LayoutDisplayHeight"
             android:layout_width="match_parent"
@@ -119,11 +120,59 @@
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewDisplayHeight"
+                android:id="@+id/textViewHeight"
                 android:layout_weight="0.25" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LayoutDisplayBMR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:text="Basal Metabolic Rate:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewDisplayBMRLabel"
+                android:textStyle="bold"
+                android:layout_weight="0.5" />
+            <TextView
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewBMRValue"
+                android:layout_weight="0.5"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LayoutDisplayCBAD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:text="Calories Burned a Day:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewDisplayCBADLabel"
+                android:textStyle="bold"
+                android:layout_weight="0.5" />
+            <TextView
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewCBADValue"
+                android:layout_weight="0.5"
+                android:textStyle="bold"/>
         </LinearLayout>
 
 
     </LinearLayout>
-</RelativeLayout>
 
+
+
+
+
+
+
+</RelativeLayout>

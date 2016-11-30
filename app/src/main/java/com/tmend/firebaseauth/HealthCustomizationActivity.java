@@ -30,7 +30,7 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 public class HealthCustomizationActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private MaterialBetterSpinner spinner_gender, spinner_activity_level;
+    private MaterialBetterSpinner spinner_gender, spinner_activity_level, spinner_height_feet, spinner_height_inches;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -41,7 +41,7 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
 
     private DatabaseReference databaseReference;
 
-    private EditText editTextGender, editTextAge, editTextWeight, editTextActivityLevel;
+    private EditText editTextAge, editTextWeight;
     private Button buttonSave,buttonProceed;
 
     @Override
@@ -61,6 +61,8 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
 
         spinner_gender = (MaterialBetterSpinner) findViewById(R.id.spinner_gender);
         spinner_activity_level = (MaterialBetterSpinner) findViewById(R.id.spinner_activitylevel);
+        spinner_height_feet = (MaterialBetterSpinner) findViewById(R.id.spinner_height_feet);
+        spinner_height_inches = (MaterialBetterSpinner) findViewById(R.id.spinner_height_inches);
 //        editTextGender = (EditText) findViewById(R.id.etgender);
         editTextAge = (EditText) findViewById(R.id.etage);
         editTextWeight = (EditText) findViewById(R.id.etweight);
@@ -69,12 +71,18 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         buttonProceed = (Button) findViewById(R.id.btnProceed);
         String[] GENDER = getResources().getStringArray(R.array.gender_types);
         String[] ACTIVITY_TYPES = getResources().getStringArray(R.array.activity_level_types);
+        String[] HEIGHT_FEET = getResources().getStringArray(R.array.height_feet);
+        String[] HEIGHT_INCHES = getResources().getStringArray(R.array.height_inches);
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,GENDER);
         ArrayAdapter<String> activity_levelAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ACTIVITY_TYPES);
+        ArrayAdapter<String> height_feetAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,HEIGHT_FEET);
+        ArrayAdapter<String> height_inchesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, HEIGHT_INCHES);
 
         spinner_gender.setAdapter(genderAdapter);
         spinner_activity_level.setAdapter(activity_levelAdapter);
+        spinner_height_feet.setAdapter(height_feetAdapter);
+        spinner_height_inches.setAdapter(height_inchesAdapter);
         editTextAge.setInputType(InputType.TYPE_CLASS_NUMBER);
         editTextWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -100,8 +108,10 @@ public class HealthCustomizationActivity extends AppCompatActivity implements Vi
         String age = editTextAge.getText().toString().trim();
         String weight = editTextWeight.getText().toString().trim();
         String activitylevel = spinner_activity_level.getText().toString().trim();
+        String height_feet = spinner_height_feet.getText().toString().trim();
+        String height_inches = spinner_height_inches.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(gender,age,weight,activitylevel);
+        UserInformation userInformation = new UserInformation(gender,age,weight,activitylevel,height_feet, height_inches);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
