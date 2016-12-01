@@ -139,7 +139,7 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
                     // Do the if statements here to decide what object goes into which list
                     if(protein.getGlycaemic_index() > Integer.parseInt(proteinGlycaemicIndex.getText().toString())) {
                         protein_obj_higher_gly.add(protein);
-                    } else {
+                    } else if(protein.getGlycaemic_index() < Integer.parseInt(proteinGlycaemicIndex.getText().toString())){
                         protein_obj_lower_gly.add(protein);
                     }
 
@@ -154,9 +154,8 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
                         proteinAlternativesListView.setAdapter(proteinAltHigherAdapter);
 
                         Toast.makeText(getActivity(),proteinGlycaemicIndex.getText().toString(), Toast.LENGTH_SHORT).show();
-
-                        // what happens when you choose higher
                         break;
+
                     case R.id.rb_protein_lower_sugar_content:
                         Toast.makeText(getActivity(),"Selected Lower", Toast.LENGTH_SHORT).show();
                         FoodsArrayAdapter proteinAltLowerAdapter = new FoodsArrayAdapter(getActivity(), protein_obj_lower_gly);
@@ -169,7 +168,6 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -229,7 +227,7 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
 //        }
 //    }
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         void onFragmentInteraction(Uri uri);
     }
 }

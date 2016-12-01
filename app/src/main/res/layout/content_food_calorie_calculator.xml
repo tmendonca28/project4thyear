@@ -13,4 +13,6 @@
     tools:context="com.tmend.firebaseauth.FoodCalorieCalculator"
     tools:showIn="@layout/activity_food_calorie_calculator">
 
+
+
 </RelativeLayout>
