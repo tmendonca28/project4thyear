@@ -12,7 +12,193 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.tmend.firebaseauth.FoodCalorieCalculator"
     tools:showIn="@layout/activity_food_calorie_calculator">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-
+        <LinearLayout
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:text="Proteins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <Spinner
+            android:id="@+id/spinner_calorie_calculator_protein_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Calories from db of selected"
+            android:paddingLeft="20dp"
+            android:id="@+id/textview_protein_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edittext_protein_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity Consumed in Grams"
+            app:met_floatingLabel="normal" />
+        <TextView
+            android:text="Total Calories for protein"
+            android:paddingLeft="20dp"
+            android:id="@+id/textview_protein_total_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+        <View
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:text="Vegetables"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <Spinner
+                android:id="@+id/spinner_calorie_calculator_vegetable_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Calories from db of selected"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_vegetable_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edittext_vegetable_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity Consumed in Grams"
+                app:met_floatingLabel="normal" />
+            <TextView
+                android:text="Total Calories for vegetable"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_vegetable_total_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:text="Grains, Nuts or Starch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <Spinner
+                android:id="@+id/spinner_calorie_calculator_grains_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Calories from db of selected"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_grain_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edittext_grain_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity Consumed in Grams"
+                app:met_floatingLabel="normal" />
+            <TextView
+                android:text="Total Calories for grains"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_grain_total_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:text="Fruits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <Spinner
+                android:id="@+id/spinner_calorie_calculator_fruit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Calories from db of selected"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_fruit_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edittext_fruit_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity Consumed in Grams"
+                app:met_floatingLabel="normal" />
+            <TextView
+                android:text="Total Calories for fruit"
+                android:paddingLeft="20dp"
+                android:id="@+id/textview_fruit_total_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"/>
+        <LinearLayout
+            android:id="@+id/LayoutTotalCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Total Calories:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTotalCaloriesLabel"
+                android:layout_weight="1" />
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTotalCalories"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"/>
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -185,11 +185,13 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         }
     }
 
+
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -198,11 +200,8 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         proteinCalories.setText("" + protein_objects.get(i).getCalories());
         proteinGlycaemicIndex.setText("" + protein_objects.get(i).getGlycaemic_index());
         proteinBenefits.setText("" + protein_objects.get(i).getBenefits());
-
-
-
-// proteinBenefits.setText(protein_objects.get(i+1).getBenefits());
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
