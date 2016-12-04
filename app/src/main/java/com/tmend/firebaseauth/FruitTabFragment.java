@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,9 +40,13 @@ public class FruitTabFragment extends Fragment implements AdapterView.OnItemSele
 
     private final List<Foods> fruit_object = new ArrayList<Foods>();
     private ArrayAdapter<Foods> fruitsAdapter;
+
+    private final ArrayList<Foods> fruit_obj_higher_gly = new ArrayList<>();
+    private final ArrayList<Foods> fruit_obj_lower_gly = new ArrayList<>();
     //Initializing
     private TextView fruitLocalName, fruitCalories, fruitGlycaemicIndex, fruitBenefits;
     private Spinner fruitSpinner;
+    RecyclerView frecyclerview;
 
     public FruitTabFragment() {
         // Required empty public constructor
@@ -95,9 +103,41 @@ public class FruitTabFragment extends Fragment implements AdapterView.OnItemSele
         fruitCalories = (TextView) rootView.findViewById(R.id.textViewFruitCalories);
         fruitGlycaemicIndex = (TextView) rootView.findViewById(R.id.textViewFruitGlycaemicIndex);
         fruitBenefits = (TextView) rootView.findViewById(R.id.textViewFruitBenefits);
-
+        frecyclerview = (RecyclerView) rootView.findViewById(R.id.rvFruitAlternatives);
         fruitSpinner = (Spinner) rootView.findViewById(R.id.spinner_fruit);
 
+        RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.radiogroup_fruits);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final ArrayList<Foods> fruit_obj_higher_gly = new ArrayList<Foods>();
+                final ArrayList<Foods> fruit_obj_lower_gly = new ArrayList<Foods>();
+                for (Foods fruit : fruit_object) {
+                    if (fruit.getGlycaemic_index() > Integer.parseInt(fruitGlycaemicIndex.getText().toString())) {
+                        fruit_obj_higher_gly.add(fruit);
+                    } else if (fruit.getGlycaemic_index() < Integer.parseInt(fruitGlycaemicIndex.getText().toString())) {
+                        fruit_obj_lower_gly.add(fruit);
+                    }
+                }
+                //checkedID is the RadioButton that is selected
+                switch (checkedId){
+                    case R.id.rb_fruit_higher_sugar_content:
+
+                        ProteinAlternativesFoodAdapter fruitAltHigherAdapter = new ProteinAlternativesFoodAdapter(getActivity(), fruit_obj_higher_gly);
+                        frecyclerview.setAdapter(fruitAltHigherAdapter);
+                        break;
+
+                    case R.id.rb_fruit_lower_sugar_content:
+
+                        ProteinAlternativesFoodAdapter fruitAltLowerAdapter = new ProteinAlternativesFoodAdapter(getActivity(), fruit_obj_lower_gly);
+                        frecyclerview.setAdapter(fruitAltLowerAdapter);
+                        break;
+                }
+            }
+        });
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        frecyclerview.setLayoutManager(mLayoutManager);
+        frecyclerview.setItemAnimator(new DefaultItemAnimator());
         return rootView;
     }
 

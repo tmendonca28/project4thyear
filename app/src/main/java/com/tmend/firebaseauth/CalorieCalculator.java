@@ -61,7 +61,7 @@ public class CalorieCalculator extends AppCompatActivity implements View.OnClick
                                 intent = new Intent(CalorieCalculator.this, MainScreen.class);
                             }
                             if (drawerItem.getIdentifier() == 2) {
-                                intent = new Intent(CalorieCalculator.this, FoodAdviser.class);
+                                intent = new Intent(CalorieCalculator.this, FoodsMainHolder.class);
                             }
                             if (drawerItem.getIdentifier() == 3) {
                                 intent = new Intent(CalorieCalculator.this, CalorieCalculator.class);

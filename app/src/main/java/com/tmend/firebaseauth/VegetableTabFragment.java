@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,9 +40,14 @@ public class VegetableTabFragment extends Fragment implements AdapterView.OnItem
 
     private final List<Foods> vegetable_object = new ArrayList<Foods>();
 
+    //The two filter lists
+    private final ArrayList<Foods> vegetable_obj_higher_gly = new ArrayList<Foods>();
+    private final ArrayList<Foods> vegetable_obj_lower_gly = new ArrayList<Foods>();
+
     //Initializing
     private TextView vegetableLocalName, vegetableCalories, vegetableGlycaemicIndex, vegetableBenefits;
     private Spinner vegetableSpinner;
+    RecyclerView vrecyclerview;
 
     public VegetableTabFragment() {
         // Required empty public constructor
@@ -94,9 +103,42 @@ public class VegetableTabFragment extends Fragment implements AdapterView.OnItem
         vegetableCalories = (TextView) rootView.findViewById(R.id.textViewVegetableCalories);
         vegetableGlycaemicIndex = (TextView) rootView.findViewById(R.id.textViewVegetableGlycaemicIndex);
         vegetableBenefits = (TextView) rootView.findViewById(R.id.textViewVegetableBenefits);
-
+        vrecyclerview = (RecyclerView) rootView.findViewById(R.id.rvVegetableAlternatives);
         vegetableSpinner = (Spinner) rootView.findViewById(R.id.spinner_vegetable);
 
+        RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.radiogroup_vegetable);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final ArrayList<Foods> vegetable_obj_higher_gly = new ArrayList<Foods>();
+                final ArrayList<Foods> vegetable_obj_lower_gly = new ArrayList<Foods>();
+                for (Foods vegetable: vegetable_object){
+                    if(vegetable.getGlycaemic_index() > Integer.parseInt(vegetableGlycaemicIndex.getText().toString())){
+                        vegetable_obj_higher_gly.add(vegetable);
+                    }else if(vegetable.getGlycaemic_index() < Integer.parseInt(vegetableGlycaemicIndex.getText().toString())){
+                        vegetable_obj_lower_gly.add(vegetable);
+                    }
+                }
+
+                //checkedID is the RadioButton that is selected
+                switch (checkedId){
+                    case R.id.rb_vegetable_higher_sugar_content:
+
+                        ProteinAlternativesFoodAdapter vegetableAltHigherAdapter = new ProteinAlternativesFoodAdapter(getActivity(), vegetable_obj_higher_gly);
+                        vrecyclerview.setAdapter(vegetableAltHigherAdapter);
+                        break;
+
+                    case R.id.rb_vegetable_lower_sugar_content:
+
+                        ProteinAlternativesFoodAdapter vegetableAltLowerAdapter = new ProteinAlternativesFoodAdapter(getActivity(), vegetable_obj_lower_gly);
+                        vrecyclerview.setAdapter(vegetableAltLowerAdapter);
+                        break;
+                }
+            }
+        });
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        vrecyclerview.setLayoutManager(mLayoutManager);
+        vrecyclerview.setItemAnimator(new DefaultItemAnimator());
         return rootView;
     }
 

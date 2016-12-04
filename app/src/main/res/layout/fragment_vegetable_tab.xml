@@ -134,20 +134,23 @@
                 android:id="@+id/textview_vegetable_choice"
                 android:textSize="14sp" />
             <RadioButton
-                android:id="@+id/rb_higher_sugar_content"
+                android:id="@+id/rb_vegetable_higher_sugar_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Higher Glycaemic Index"
                 android:textSize="14sp" />
             <RadioButton
-                android:id="@+id/rb_lower_sugar_content"
+                android:id="@+id/rb_vegetable_lower_sugar_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lower Glycaemic Index"/>
-
-
-
         </RadioGroup>
+        <android.support.v7.widget.RecyclerView
+            android:paddingTop="20sp"
+            android:id="@+id/rvVegetableAlternatives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiogroup_vegetable"/>
 
     </RelativeLayout>
 

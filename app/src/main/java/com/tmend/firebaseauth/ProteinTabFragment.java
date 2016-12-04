@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +41,10 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
     //Firebase
     private DatabaseReference databaseReference,dref;
     private OnFragmentInteractionListener mListener;
-    private String gi;
 
     //Initializing firebaselistadapter
     private FirebaseListAdapter proteinAlternativeAdapter;
+
 
 
     private final List<Foods> protein_objects = new ArrayList<Foods>();
@@ -54,6 +57,7 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
     private TextView proteinLocalName, proteinCalories, proteinGlycaemicIndex, proteinBenefits;
     private Spinner proteinSpinner;
     private ListView proteinAlternativesListView;
+    RecyclerView precyclerView;
 
 
     public ProteinTabFragment() {
@@ -114,16 +118,17 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_protein_tab, container, false);
         //ArrayAdapter<Foods> proteinsAdapter = new ArrayAdapter<Foods>(getActivity(),R.layout.fragment_protein_tab,protein_objects);
-        Log.e("TAG", "Hello onCreate View");
-        Log.e("TAG", "protein_objects size2: " + protein_objects.size());
         proteinLocalName = (TextView) rootView.findViewById(R.id.textViewProteinLocalName);
         proteinCalories = (TextView) rootView.findViewById(R.id.textViewProteinCalories);
         proteinGlycaemicIndex = (TextView) rootView.findViewById(R.id.textViewProteinGlycaemicIndex);
         proteinBenefits = (TextView) rootView.findViewById(R.id.textViewProteinBenefits);
-        gi = proteinGlycaemicIndex.getText().toString();
         proteinSpinner = (Spinner) rootView.findViewById(R.id.spinner_protein);
+        precyclerView = (RecyclerView) rootView.findViewById(R.id.rvProteinAlternatives);
 
-        proteinAlternativesListView = (ListView) rootView.findViewById(R.id.protein_alternatives);
+
+
+
+//        proteinAlternativesListView = (ListView) rootView.findViewById(R.id.protein_alternatives);
 
 
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.radiogroup_proteins);
@@ -133,6 +138,8 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
                 Log.e("TAG", "protein_objects size3: " + protein_objects.size());
                 Log.e("TAG", "Current Glycaemic index:" + proteinGlycaemicIndex.getText());
                 // Loop through all the proteins to determine which goes in which list
+                final ArrayList<Foods> protein_obj_higher_gly = new ArrayList<Foods>();
+                final ArrayList<Foods> protein_obj_lower_gly = new ArrayList<Foods>();
                 for (Foods protein: protein_objects ) {
                     // First, let's log the glycaemic index to see if it gets it
                     Log.e("TAG", "Glycaemic index:" + protein.getGlycaemic_index().toString());
@@ -150,21 +157,24 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
                     case R.id.rb_protein_higher_sugar_content:
 
                         // Using the default android array adapter
-                        FoodsArrayAdapter proteinAltHigherAdapter = new FoodsArrayAdapter(getActivity(), protein_obj_higher_gly);
-                        proteinAlternativesListView.setAdapter(proteinAltHigherAdapter);
+                        ProteinAlternativesFoodAdapter proteinAltHigherAdapter = new ProteinAlternativesFoodAdapter(getActivity(), protein_obj_higher_gly);
+                        precyclerView.setAdapter(proteinAltHigherAdapter);
 
                         Toast.makeText(getActivity(),proteinGlycaemicIndex.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.rb_protein_lower_sugar_content:
                         Toast.makeText(getActivity(),"Selected Lower", Toast.LENGTH_SHORT).show();
-                        FoodsArrayAdapter proteinAltLowerAdapter = new FoodsArrayAdapter(getActivity(), protein_obj_lower_gly);
-                        proteinAlternativesListView.setAdapter(proteinAltLowerAdapter);
+                        ProteinAlternativesFoodAdapter proteinAltLowerAdapter = new ProteinAlternativesFoodAdapter(getActivity(), protein_obj_lower_gly);
+                        precyclerView.setAdapter(proteinAltLowerAdapter);
                         // what happens when you choose lower
                         break;
                 }
             }
         });
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        precyclerView.setLayoutManager(mLayoutManager);
+        precyclerView.setItemAnimator(new DefaultItemAnimator());
         return rootView;
     }
 
@@ -207,26 +217,11 @@ public class ProteinTabFragment extends Fragment implements AdapterView.OnItemSe
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-//    public void onRadioButtonClicked(View view) {
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        // Check which radio button was clicked
-//        switch(view.getId()) {
-//            case R.id.rb_protein_higher_sugar_content:
-//                if (checked)
-//                    Toast.makeText(getActivity(),"Selected Higher", Toast.LENGTH_LONG).show();
-//                // Pirates are the best
-//                break;
-//            case R.id.rb_protein_lower_sugar_content:
-//                if (checked)
-//                    Toast.makeText(getActivity(),"Selected Lower", Toast.LENGTH_LONG).show();
-//                // Ninjas rule
-//                break;
-//        }
-//    }
+
+
     public interface OnFragmentInteractionListener {
 
         void onFragmentInteraction(Uri uri);
     }
+
 }

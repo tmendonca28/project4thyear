@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirebaseAuth</string>
+    <string name="app_name">Diabetes Food Adviser</string>
     <string name="title_activity_health_customization">HealthCustomizationActivity</string>
     <string name="title_activity_main_screen">MainScreen</string>
     <string name="title_activity_food_adviser">FoodAdviser</string>
