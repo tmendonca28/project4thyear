@@ -34,9 +34,9 @@ public class CalorieCalculator extends AppCompatActivity implements View.OnClick
 
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Food Adviser");
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("Calorie Calculator");
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Edit Details");
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Food Adviser");
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Calorie Calculator");
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName("Edit Details");
 
 
         //create the drawer and remember the `Drawer` result object
@@ -48,8 +48,8 @@ public class CalorieCalculator extends AppCompatActivity implements View.OnClick
                         new DividerDrawerItem(),
                         item2,
                         item3,
-                        item4,
-                        new SecondaryDrawerItem().withName("Help")
+                        item4
+//                        new SecondaryDrawerItem().withName("Help")
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

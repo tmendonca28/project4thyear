@@ -69,7 +69,7 @@
         <activity
             android:name=".FoodCalorieCalculator"
             android:label="@string/title_activity_food_calorie_calculator"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

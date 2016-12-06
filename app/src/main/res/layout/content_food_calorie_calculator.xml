@@ -41,19 +41,30 @@
             android:paddingLeft="20dp"
             android:id="@+id/textview_protein_calories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edittext_protein_weight"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+               android:id="@+id/edittext_protein_weight"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Quantity Consumed in Grams"
+               app:met_floatingLabel="normal"
+                android:textSize="14sp" />
+
+            <Button
+            android:text="Calculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantity Consumed in Grams"
-            app:met_floatingLabel="normal" />
-        <TextView
+            android:id="@+id/button_protein_calc"
+                android:textSize="18sp" />
+
+            <TextView
             android:text="Total Calories for protein"
             android:paddingLeft="20dp"
             android:id="@+id/textview_protein_total_calories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="25sp" />
     </LinearLayout>
         <View
             android:layout_marginTop="30sp"
@@ -79,19 +90,30 @@
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_vegetable_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/edittext_vegetable_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Quantity Consumed in Grams"
-                app:met_floatingLabel="normal" />
+                app:met_floatingLabel="normal"
+                android:textSize="14sp" />
+            <Button
+                android:text="Calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_vegetable_calc"
+                android:textSize="18sp" />
+
             <TextView
                 android:text="Total Calories for vegetable"
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_vegetable_total_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
         </LinearLayout>
         <View
             android:layout_marginTop="30sp"
@@ -123,13 +145,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Quantity Consumed in Grams"
-                app:met_floatingLabel="normal" />
+                app:met_floatingLabel="normal"
+                android:textSize="14sp" />
+            <Button
+                android:text="Calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_grain_calc"
+                android:textSize="18sp" />
             <TextView
                 android:text="Total Calories for grains"
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_grain_total_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
         </LinearLayout>
         <View
             android:layout_marginTop="30sp"
@@ -161,13 +191,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Quantity Consumed in Grams"
-                app:met_floatingLabel="normal" />
+                app:met_floatingLabel="normal"
+                android:textSize="14sp" />
+            <Button
+                android:text="Calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_fruit_calc"
+                android:textSize="18sp" />
             <TextView
                 android:text="Total Calories for fruit"
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_fruit_total_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
         </LinearLayout>
         <View
             android:layout_marginTop="30sp"
