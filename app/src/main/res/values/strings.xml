@@ -16,4 +16,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bmrcalculator">Basal Metabolic Rate Calculator</string>
     <string name="title_activity_food_calorie_calculator">Food Calorie Calculator</string>
+    <string name="action_back">Back</string>
+    <string name="action_forward">Forward</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="title_activity_diabetes_info">Basic Diabetes Information</string>
 </resources>

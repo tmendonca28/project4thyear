@@ -69,9 +69,10 @@ public class MainScreen extends AppCompatActivity {
 
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Food Adviser");
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("Calorie Calculator");
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Edit Details");
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Food Adviser");
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Calorie Calculator");
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName("Edit Details");
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(5).withName("Basic Diabetes Information");
 
         //Intitialize reference to db
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(firebaseAuth.getCurrentUser().getUid());
@@ -118,7 +119,7 @@ public class MainScreen extends AppCompatActivity {
                         item2,
                         item3,
                         item4,
-                        new SecondaryDrawerItem().withName("Help")
+                        item5
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -137,6 +138,9 @@ public class MainScreen extends AppCompatActivity {
                             }
                             if (drawerItem.getIdentifier() == 4) {
                                 intent = new Intent(MainScreen.this, HealthCustomizationActivity.class);
+                            }
+                            if (drawerItem.getIdentifier() == 5) {
+                                intent = new Intent(MainScreen.this, DiabetesInfo.class);
                             }
                             if(intent != null){
                                 MainScreen.this.startActivity(intent);
