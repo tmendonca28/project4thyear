@@ -139,7 +139,9 @@
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_grain_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/edittext_grain_weight"
                 android:layout_width="match_parent"
@@ -147,6 +149,7 @@
                 android:hint="Quantity Consumed in Grams"
                 app:met_floatingLabel="normal"
                 android:textSize="14sp" />
+
             <Button
                 android:text="Calculate"
                 android:layout_width="match_parent"
@@ -180,12 +183,15 @@
                 android:id="@+id/spinner_calorie_calculator_fruit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:text="Calories from db of selected"
                 android:paddingLeft="20dp"
                 android:id="@+id/textview_fruit_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/edittext_fruit_weight"
                 android:layout_width="match_parent"
@@ -212,6 +218,14 @@
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="@color/colorPrimary"/>
+        <Button
+            android:layout_marginTop="10sp"
+            android:text="Calculate Total Calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_total_calc"
+            android:textSize="18sp" />
+
         <LinearLayout
             android:id="@+id/LayoutTotalCalories"
             android:layout_width="match_parent"

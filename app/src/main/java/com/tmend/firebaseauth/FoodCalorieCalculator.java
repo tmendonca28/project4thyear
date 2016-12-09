@@ -39,9 +39,9 @@ public class FoodCalorieCalculator extends AppCompatActivity implements AdapterV
     private final List<Foods> grain_obj = new ArrayList<>();
     private final List<Foods> fruit_obj = new ArrayList<>();
     private Spinner spinnerProteinName,spinnerVegetableName,spinnerGrainsName,spinnerFruitsName;
-    private TextView loadedProteinCalories,loadedVegetableCalories,loadedGrainsCalories,loadedFruitCalories,totalProteinCalories,totalVegetableCalories,totalGrainsCalories,totalFruitCalories;
+    private TextView loadedProteinCalories,loadedVegetableCalories,loadedGrainsCalories,loadedFruitCalories,totalProteinCalories,totalVegetableCalories,totalGrainsCalories,totalFruitCalories,totalCalories;
     private EditText proteinWeight,vegetableWeight,grainsWeight,fruitWeight;
-    private Button calculateProteinCalories, calculateVegetableCalories, calculateGrainsCalories, calculateFruitsCalories;
+    private Button calculateProteinCalories, calculateVegetableCalories, calculateGrainsCalories, calculateFruitsCalories,calculateTotalCalories;
     private Double dblLoadedProteinCalories,dblLoadedVegetableCalories,dblLoadedGrainsCalories,dblLoadedFruitCalories;
 
     @Override
@@ -68,24 +68,27 @@ public class FoodCalorieCalculator extends AppCompatActivity implements AdapterV
         vegetableWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
         grainsWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
         fruitWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
-        proteinWeight.setText("0.0");
-        vegetableWeight.setText("0.0");
-        grainsWeight.setText("0.0");
-        fruitWeight.setText("0.0");
+        proteinWeight.setText("100");
+        vegetableWeight.setText("100");
+        grainsWeight.setText("100");
+        fruitWeight.setText("1");
 
         totalProteinCalories = (TextView) findViewById(R.id.textview_protein_total_calories);
         totalVegetableCalories = (TextView) findViewById(R.id.textview_vegetable_total_calories);
         totalGrainsCalories = (TextView) findViewById(R.id.textview_grain_total_calories);
         totalFruitCalories = (TextView) findViewById(R.id.textview_fruit_total_calories);
+        totalCalories = (TextView) findViewById(R.id.textViewTotalCalories);
         calculateProteinCalories = (Button) findViewById(R.id.button_protein_calc);
         calculateVegetableCalories = (Button) findViewById(R.id.button_vegetable_calc);
         calculateGrainsCalories = (Button) findViewById(R.id.button_grain_calc);
         calculateFruitsCalories = (Button) findViewById(R.id.button_fruit_calc);
+        calculateTotalCalories = (Button) findViewById(R.id.button_total_calc);
 
         calculateProteinCalories.setOnClickListener(this);
         calculateVegetableCalories.setOnClickListener(this);
         calculateGrainsCalories.setOnClickListener(this);
         calculateFruitsCalories.setOnClickListener(this);
+        calculateTotalCalories.setOnClickListener(this);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         dref = FirebaseDatabase.getInstance().getReference();
@@ -203,7 +206,7 @@ public class FoodCalorieCalculator extends AppCompatActivity implements AdapterV
                 // your stuff here
                 break;
             case R.id.spinner_calorie_calculator_vegetable_name:
-                loadedVegetableCalories.setText("" + vegetable_obj.get(position).getCalories() + " Calories in a single vegetable");
+                loadedVegetableCalories.setText("" + vegetable_obj.get(position).getCalories() + " Calories in 100 Grams");
                 dblLoadedVegetableCalories = Double.parseDouble(vegetable_obj.get(position).getCalories().toString());
                 totalVegetableCalories.setText("");
                 // your stuff here
@@ -258,6 +261,11 @@ public class FoodCalorieCalculator extends AppCompatActivity implements AdapterV
                 int roundFruitCalc = (int) Math.round(fruitCalc);
                 totalFruitCalories.setText("" + roundFruitCalc);
                 break;
+            }
+            case R.id.button_total_calc:{
+                Integer totalCalc;
+                totalCalc = Integer.parseInt(totalProteinCalories.getText().toString()) + Integer.parseInt(totalVegetableCalories.getText().toString()) + Integer.parseInt(totalGrainsCalories.getText().toString()) + Integer.parseInt(totalFruitCalories.getText().toString());
+                totalCalories.setText("" + totalCalc + " Calories");
             }
         }
     }
