@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_diabetes_info"
@@ -12,21 +12,89 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.tmend.firebaseauth.DiabetesInfo"
     tools:showIn="@layout/activity_diabetes_info">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
+        android:layout_height="wrap_content"
+        android:id="@+id/card_1"
+        android:layout_marginBottom="30sp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
-
-
+            android:layout_height="wrap_content"
+            android:text="Why take care of your Diabetes?"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Taking care of yourself and your diabetes can help you feel good today and in the future. When your blood sugar (glucose) is close to normal, you are likely to:" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="         -Have more energy \n         -Be less tired and thirsty \n         -Need to pass urine less often \n         -Have fewer skin or bladder infections" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\nYou also have less chance of having health problems caused by diabetes such as:"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="         -Heart attack or stroke \n         -Eye problems \n         -Teeth and gum problems \n         -Kidney problems \n         -Pain in hands and feet(nerve damage)" />
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_2"
+        android:layout_below="@id/card_1"
+        android:layout_marginBottom="30sp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eating Well"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Choose foods that are lower in calories, sugar and salt \n-Eat foods with more fiber such as whole grain cereals, rice or pasta \n-Choose foods such as fruits, vegetables, whole grains and low-fat milk \n-Drink water instead of juice and regular soda \n-When eating a meal, fill half of your plate with fruits and vegetables, one quarter with proteins and one quarter with whole grain" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_3"
+            android:layout_below="@id/card_2"
+            android:layout_marginBottom="30sp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Get routine care to stay healthy"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="See your health care team at least twice a year. At each visit, be sure you have a:\n-Blood Pressure Check \n-Foot Check \n-Weight Check \n-A1C test: To be maintained below 7" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>
